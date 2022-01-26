@@ -15,5 +15,11 @@ class Post(models.Model):
         ("published", "Published")
     )
 
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, related_name="blog_posts", on_delete=models.CASCADE)
+
+    publish_date = models.DateTimeField()
+
+    title = models.CharField(max_length=45, unique=False)
+
+    slug = models.SlugField(max_length=100, unique_for_date=True)
 # Create your models here.
